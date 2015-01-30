@@ -21,7 +21,7 @@
 "PDA-KS-W5m.text" = "分享给好友";
 
 /* Class = "IBUILabel"; text = "from QQ"; ObjectID = "QCq-ce-Ecs"; */
-"QCq-ce-Ecs.text" = "from QQ";
+"QCq-ce-Ecs.text" = "来自 QQ";
 
 /* Class = "IBUIViewController"; title = "使用教程"; ObjectID = "ZKA-qx-0FO"; */
 "ZKA-qx-0FO.title" = "使用教程";

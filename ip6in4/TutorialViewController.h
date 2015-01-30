@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TutorialViewController : UIViewController
+@interface TutorialViewController : UIViewController<UIWebViewDelegate,UIActionSheetDelegate>
+
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property IBOutlet UIButton *button;
+@property IBOutlet UILabel *label;
+@property IBOutlet UIActivityIndicatorView *indicator;
 
 @end

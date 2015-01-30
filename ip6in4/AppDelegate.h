@@ -7,6 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MobClick.h"
+#import "ShareSDK/ShareSDK.h"
+#import "WeiboSDK.h"
+#import "ShareSDK/Extend/WeChatSDK/WXApi.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

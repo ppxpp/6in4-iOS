@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "UMFeedback.h"
+#import "ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework/Headers/QQApiInterface.h"
+#import "ShareSDK/Extend/QQConnectSDK/TencentOpenAPI.framework/Headers/TencentOAuth.h"
 
 @interface AppDelegate ()
 
@@ -17,7 +20,63 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [MobClick startWithAppkey:@"5469aea6fd98c540350013b9" reportPolicy:BATCH channelId:nil];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+    [MobClick updateOnlineConfig];
+    [MobClick checkUpdate];
+    
+    [UMFeedback setAppkey:@"5469aea6fd98c540350013b9"];
+    
+    
+    [ShareSDK registerApp:@"471c66665604"];
+    [ShareSDK connectSinaWeiboWithAppKey:@"2728604013"
+                               appSecret:@"aff3382960ce99eeff9cb3adb53bf858"
+                             redirectUri:@"https://api.weibo.com/oauth2/default.html"
+                             weiboSDKCls:[WeiboSDK class]];
+    
+    [ShareSDK connectDoubanWithAppKey:@"0cfbe76c9488761626f3b645bd996242"
+                            appSecret:@"78fb90af95bde6ff"
+                          redirectUri:@"http://dev.kumoway.com/braininference/infos.php"];
+    
+    [ShareSDK connectQZoneWithAppKey:@"1103295018"
+                           appSecret:@"Ijm83Xs48ALOXfcj"
+                   qqApiInterfaceCls:[QQApiInterface class]
+                     tencentOAuthCls:[TencentOAuth class]];
+    //添加QQ应用  注册网址  http://open.qq.com/
+    [ShareSDK connectQQWithQZoneAppKey:@"1103295018"
+                     qqApiInterfaceCls:[QQApiInterface class]
+                       tencentOAuthCls:[TencentOAuth class]];
+    
+    //wechat
+    [ShareSDK connectWeChatWithAppId:@"wx5534ae6215e74e32"   //微信APPID
+                           appSecret:@"e0ac81d1390a0e8b9657ac5020ced2a4"  //微信APPSecret
+                           wechatCls:[WXApi class]];
+    
+    //连接短信分享
+    [ShareSDK connectSMS];
+    //连接邮件
+    [ShareSDK connectMail];
+    
+    
+    
     return YES;
+}
+
+
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [ShareSDK handleOpenURL:url wxDelegate:nil];
+}
+
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [ShareSDK handleOpenURL:url
+                 sourceApplication:sourceApplication
+                        annotation:annotation
+                        wxDelegate:nil];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

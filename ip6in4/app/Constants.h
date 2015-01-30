@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "MobClick.h"
 
-@interface Constants : NSObject
+//extern NSString * const IPv6Res_URL_Default;
 
-@end
+extern NSString* APPIPv6ResUrl();
+
+extern NSString* APPTutorialUrl();
+
+extern NSString* APPAccountCheckUrl();
+
+extern NSString* APPShareText();

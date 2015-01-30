@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MobClick.h"
+#import "Constants.h"
 
-@interface NavigateViewController : UIViewController
+@interface ResourceViewController : UIViewController<UIWebViewDelegate>
+
+
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
+@property IBOutlet UIButton *button;
+@property IBOutlet UILabel *label;
+@property IBOutlet UIActivityIndicatorView *indicator;
+
+- (IBAction)onRefresh:(id)sender;
 
 @end
